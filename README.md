@@ -1,10 +1,10 @@
-# Big-Data-Hadoop-Commands
+# Big Data Hadoop Commands
 This file contains commonly used commands for some basic scenarios for the big data open source framework and some other software components that run on top of it.
 
 ## HDFS
 HDFS is the primary storage powerhouse of the hadoop ecosystem.
 
-***N.B: The hdfs file system is navigated with the default linux command line command, just prefix with a '-' .***
+***N.B: The hdfs file system is navigated with the default linux command line commands, just prefix with a '-' . Also run commands without the braces i.e {}***
 
 1. Upload a local file  to a HDFS directory\
  `hdfs dfs -put {local-source-file-path} {destination-source-file-path} `
@@ -25,7 +25,7 @@ HDFS is the primary storage powerhouse of the hadoop ecosystem.
 ## HBase
 Hbase is a No SQL, column oriented database for the big data hadoop ecosystem.
 
-1. Create a common table
+1. Create a common table\
   `create 'table-name','column-family-name'`
   
 ***A column family name can be likened to a sub-category of a table containing columns of related information that will kst likely be queried together***
@@ -44,4 +44,34 @@ Hbase is a No SQL, column oriented database for the big data hadoop ecosystem.
 5. Query entries to a Rowkey\
    `get 'table-name', 'RowKey'`
    
-6. 
+6. Query entries to a column\
+   `get 'table-name', 'column-family-name:column-name'`
+   
+7. Query table for a perticular value\
+   `scan 'table-name', {FILTER=>"ValueFilter(=,'binaryFilter:value')"}`
+   
+8. Query a particular column for a particular value\
+   `scan 'table-name', {FILTER=>"ColumnPrefixFilter('column-name') AND ValueFilter(=,'binaryFilter:value')"}
+   
+9. Delete a value from a column\
+   `delete 'table-name', 'RowKey', 'column-family-name:column-name'`
+   
+10. Delete all data in a row from differnet columns\
+    `deleteall 'table-name', 'RowKey',`
+    
+11. Delete a whole table
+    `disable 'table-name'`\
+    `drop 'table-name'`
+    
+12. Creating and Dividing a common table into regions and specifying row start keys for each region.\
+    `create 'table-name', 'column-family-name', SPILITS => ['first-start-key', 'second-start-key', ...]`
+
+***Specifying n number of start keys creates n+1 number of regions where the first region starts at 0 and ends at the first startkey***
+
+
+### HIVE
+Hive is a data warehouse used to query and analyze data stored in different databases and file systems that with hadoop using an SQL like interface.
+
+1.
+    
+   
