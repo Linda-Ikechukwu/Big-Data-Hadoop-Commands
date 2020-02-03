@@ -1,5 +1,5 @@
 # Big Data Hadoop Commands
-This file contains commonly used commands for some basic scenarios for the big data open source framework and some other software components that run on top of it.
+This file contains commonly used commands for some basic tasks for the Hadoop big data open source framework and its major components.
 
 ## HDFS
 HDFS is the primary storage powerhouse of the hadoop ecosystem.
@@ -69,7 +69,7 @@ Hbase is a No SQL, column oriented database for the big data hadoop ecosystem.
 ***Specifying n number of start keys creates n+1 number of regions where the first region starts at 0 and ends at the first startkey***
 
 
-### HIVE
+## HIVE
 Hive is a data warehouse used to query and analyze data stored in different databases and file systems that with hadoop using an SQL like interface.
 
 1. Get the current date and time \
