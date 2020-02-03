@@ -28,7 +28,7 @@ Hbase is a No SQL, column oriented database for the big data hadoop ecosystem.
 1. Create a common table\
   `create 'table-name','column-family-name'`
   
-***A column family name can be likened to a sub-category of a table containing columns of related information that will kst likely be queried together***
+***A column family name can be likened to a sub-category of a table containing columns of related information that will likely be queried together***
 
 2. Create a Namespace\
    `create_namespace 'namespace-name'`
@@ -59,7 +59,7 @@ Hbase is a No SQL, column oriented database for the big data hadoop ecosystem.
 10. Delete all data in a row from differnet columns\
     `deleteall 'table-name', 'RowKey',`
     
-11. Delete a whole table
+11. Delete a whole table\
     `disable 'table-name'`\
     `drop 'table-name'`
     
@@ -72,6 +72,42 @@ Hbase is a No SQL, column oriented database for the big data hadoop ecosystem.
 ### HIVE
 Hive is a data warehouse used to query and analyze data stored in different databases and file systems that with hadoop using an SQL like interface.
 
-1.
-    
+1. Get the current date and time \
+   `select from_unixtime(unix_timestamp(), dd-MM-yyyy  HH:mm);`
    
+2. Create an internal table\
+   `create table table-name (column-name data-type, column-name data type, ....) row format delimited fields terminated by ',' stored as textfile ;`
+    
+***Internal tables are tables that are only accessed within hive while external tables can be accessed outside of hive***
+
+3. Create an external table\
+    `create external table <table-name> (column-name data-type, column-name data type, ....) row format delimited fields terminated by ',' stored as textfile; `
+    
+4. Load data from a local file to hive\
+    `load data local inpath <'path-to-local-file'> into table <table-name>;`
+    
+5. Load data from a hdfs file\
+   `load data inpath 'path-to-hdfs-file' into table table-name;`
+   
+6. Load data immediately from source when creating the table\
+    `create table <table-name> (column-name data-type, column-name data type, ....) row format delimited fields terminated by ',' stored as textfile location <'path-to-source-file'>;`
+    
+7. Load only rows of a table which contain a given column value into another table\
+   `insert into <destination-table-name> select * from <source-table-name> where <column-name=value>;`
+   
+8. Load data from one Hive table to another.\
+   `create table <new-table-name> as select * from <source-table-name>`
+    
+9. Load only rows of a table which contain a given column value into another table\
+   `insert into <destination-table-name> select * from <source-table-name> where <column-name=value>;`
+   
+10. Create a table with the specifications of an existing table\
+   `create <new-table-name> like <existing-table-name>;`
+   
+11. Query table for all rows containing occurence of a particular value in a column\
+   `select * from <table-name> where <column-name='value'>;`
+
+12. Associating a Hive table with a Hbase base table on table creation\
+   `create external table <external-table-name> (key int, gid map <<column-1-data-type,column-2-data-type>>) stored by 'org.hadoop.hive.hbase.HbaseStorageHandler' with SERDEPROPERTIES ("hbase.columns.mapping" = "<hbase-table-column-family-name:>") TBLPROPERTIES ("hbase.table.name" = "<hbase-table-name>");`
+    
+    
