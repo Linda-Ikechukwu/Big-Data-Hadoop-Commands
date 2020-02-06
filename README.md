@@ -37,6 +37,8 @@ Hbase is a No SQL, column oriented database for the big data hadoop ecosystem.
    
 3. Create a table in a namespace\
    `create 'namespace-name:table-name', 'column-family-name'`
+
+***For all commands involving a table name, if the table was created in a namespace, the namespace should be included right before the table name i.e "namespace-name:table-name"***
    
 4. Add data to a table\
    `put 'table-name', 'RowKey', 'column-family-name:column-name', 'value'`
@@ -106,6 +108,9 @@ Hive is a data warehouse used to query and analyze data stored in different data
    
 11. Query table for all rows containing occurence of a particular value in a column\
    `select * from <table-name> where <column-name='value'>;`
+   
+13. Query all entries to a table
+    `select * from <table-name>;`
 
 12. Associating a Hive table with a Hbase base table on table creation\
    `create external table <external-table-name> (key int, gid map <<column-1-data-type,column-2-data-type>>) stored by 'org.hadoop.hive.hbase.HbaseStorageHandler' with SERDEPROPERTIES ("hbase.columns.mapping" = "<hbase-table-column-family-name:>") TBLPROPERTIES ("hbase.table.name" = "<hbase-table-name>");`
